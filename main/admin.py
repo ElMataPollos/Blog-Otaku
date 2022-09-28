@@ -10,7 +10,7 @@ from . models import (
     # Skill
     )
 
-
+#Controla los valores de las Clases en la página de admin
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
 	list_display = ('id', 'user')

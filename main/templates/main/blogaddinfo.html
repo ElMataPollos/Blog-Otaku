@@ -1,0 +1,75 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+<!-- ================================
+Start SEO blocks
+================================= -->
+{% block title %}{% endblock %}
+{% block decription %}{% endblock %}
+{% block keywords %}{% endblock %}
+<!-- ================================
+END SEO blocks
+================================= -->
+
+<!-- ================================
+Start CSS blocks
+================================= -->
+{% block extend_header %}{% endblock %}
+<!-- ================================
+END CSS blocks
+================================= -->
+
+<!-- ================================
+Start script blocks
+================================= -->
+{% block extend_footer %}{% endblock %}
+<!-- ================================
+END script blocks
+================================= -->
+
+<!-- ================================
+Start Content
+================================= -->
+{% block content %}
+<section>
+    <div class="innerPageBannerCol">
+      <div class="container">
+        <div class="row g-4 g-md-3  align-items-center">
+          <div class="col-md-6">
+            <div class="bannerContent">
+              <h1 class="xlTitle pb-md-3">Agrega un Manga!</h1>
+            </div>
+          </div>
+    </div>
+  
+  
+  <section>
+    <div class="lightBg">
+      <div class="container">
+        <br>
+          <form id="BlogForm" method="POST" action="{% url 'main:blogaddinfo'%}" enctype = "multipart/form-data">
+          {% csrf_token %}
+            <label for="author">Autor del Manga</label>
+            {{form.author}}
+              <label for="name">Nombre del Manga</label>
+              {{form.name}}
+  
+              <label for="description">Descripción del Manga</label>
+              {{form.description}}
+              <label for="body">Sinopsis</label>
+              {{form.body}}
+              <label for="image">Imagen del Manga</label>
+              {{form.image}}
+              
+              <input class='btn btnPrimary' type="submit" value="Subir!">
+          </form>
+          <br>
+      </div>
+    </div>
+  </section> 
+  
+  <!-- ================================
+  End Content
+  ================================= -->
+  {%endblock%}
+      

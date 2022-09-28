@@ -26,6 +26,8 @@ from django.contrib.auth.models import User
 # 		model = ContactProfile
 # 		fields = ('name', 'email', 'message',)
 
+#Define los datos (con nombre y tipo) a llenar de las clases
+
 class CreateUserForm(UserCreationForm):
 	class Meta:
 		model = User
@@ -34,22 +36,22 @@ class CreateUserForm(UserCreationForm):
 class BlogForm(forms.ModelForm):
 	author = forms.CharField(max_length=200, required=True,
 		widget=forms.TextInput(attrs={
-			'placeholder':'Author name...',
+			'placeholder':'Autor...',
 		}))
 	name = forms.CharField(max_length=200, required=True,
 		widget=forms.TextInput(attrs={
-			'placeholder':'Full name...',
+			'placeholder':'Nombre del Manga...',
 		}))
 	description = forms.CharField(max_length=500, required=True,
 		widget=forms.TextInput(attrs={
-			'placeholder':'description...',
+			'placeholder':'Descripción...',
 		}))
 
 	image = forms.ImageField()
 
 	body = forms.CharField(max_length=2000, required=True,
 		widget=forms.TextInput(attrs={
-			'placeholder':'info...',
+			'placeholder':'Info del Manga...',
 		}))
 
 	class Meta: 
@@ -61,14 +63,14 @@ class TestimonialForm(forms.ModelForm):
 	thumbnail = forms.ImageField()
 	name = forms.CharField(max_length=200, required=True,
 			widget=forms.TextInput(attrs={
-				'placeholder':'Author name...',
+				'placeholder':'Autor...',
 			}))
 	
 	quote = forms.CharField(max_length=500, required=True,
 			widget=forms.TextInput(attrs={
-				'placeholder':'comment...',
+				'placeholder':'Comentario...',
 			}))	
   
 	class Meta: 
 		model = Testimonial
-		fields =['thumbnail', 'name', 'role', 'quote']
+		fields =['thumbnail', 'name', 'quote']

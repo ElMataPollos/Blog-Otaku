@@ -1,3 +1,7 @@
+
+##################
+# Configuraciones como Debug, La clave secreta etc.
+##################
 """
 Django settings for Blog Otaku ql project.
 

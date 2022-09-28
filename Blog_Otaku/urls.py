@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+#Definición de los links a los archivos en general
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', include('main.urls', namespace="main"))

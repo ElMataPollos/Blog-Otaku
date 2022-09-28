@@ -1,4 +1,5 @@
 from django.shortcuts import render
+
 from django.contrib import messages
 from .models import (
 		UserProfile,
@@ -9,16 +10,10 @@ from .models import (
 	)
 
 from django.views import generic
-
-
-# from . forms import ContactForm
-
-from django.views import generic
-
-
+# from django.views import generic
 from . forms import BlogForm, CreateUserForm, TestimonialForm
 
-#aqui se hacen un monton de form para el usuario login etc 
+#Importación de forms como el login autenticación, etc.
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -26,6 +21,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse
 from django.shortcuts import redirect
 
+#Views se encarga de pedir y devolver los datos de la base de datos al front end
 def registerPage(request):
 	if request.user.is_authenticated:
 		return redirect("main:home")
@@ -36,7 +32,7 @@ def registerPage(request):
 			if form.is_valid():
 				form.save()
 				user = form.cleaned_data.get('username')
-				messages.success(request, 'Account was created for ' + user)
+				messages.success(request, 'Cuenta creada para ' + user+'!\nBienvenide!!!')
 
 				return redirect('main:login')
 			
@@ -58,7 +54,7 @@ def loginPage(request):
 				login(request, user)
 				return redirect("main:home")
 			else:
-				messages.info(request, 'Username OR password is incorrect')
+				messages.info(request, 'Usuario o contrseña incorrectos >:(')
 
 		context = {}
 		return render(request, 'main/login.html', context)
@@ -72,42 +68,15 @@ class IndexView(generic.TemplateView):
 
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
-		
+	
 		testimonials = Testimonial.objects.filter(is_active=True)
-		#certificates = Certificate.objects.filter(is_active=True)
 		blogs = Blog.objects.filter(is_active=True)
-		#portfolio = Portfolio.objects.filter(is_active=True)
-		
+
 		context["testimonials"] = testimonials
-		#context["certificates"] = certificates
 		context["blogs"] = blogs
-		#context["portfolio"] = portfolio
+	
 		return context
 
-
-# class ContactView(generic.FormView):
-# 	template_name = "main/contact.html"
-# 	form_class = ContactForm
-# 	success_url = "/"
-	
-# 	def form_valid(self, form):
-# 		form.save()
-# 		messages.success(self.request, 'Thank you. We will be in touch soon.')
-# 		return super().form_valid(form)
-
-
-# class PortfolioView(generic.ListView):
-# 	model = Portfolio
-# 	template_name = "main/portfolio.html"
-# 	paginate_by = 10
-
-# 	def get_queryset(self):
-# 		return super().get_queryset().filter(is_active=True)
-
-
-# class PortfolioDetailView(generic.DetailView):
-# 	model = Portfolio
-# 	template_name = "main/portfolio-detail.html"
 
 class BlogAddInfo(generic.FormView):
 	template_name = "main/blogaddinfo.html"
@@ -116,11 +85,10 @@ class BlogAddInfo(generic.FormView):
 	
 	def form_valid(self, form):
 		form.save()
-		messages.success(self.request, 'Gracias por contribuir.')
+		messages.success(self.request, 'Blog Creado.\nGracias por la info!!!')
 		return super().form_valid(form)
 
 
-#Comentarios
 class TestimonialAddInfo(generic.FormView):
 	template_name = "main/contact.html"
 	form_class = TestimonialForm
@@ -128,7 +96,7 @@ class TestimonialAddInfo(generic.FormView):
 	
 	def form_valid(self, form):
 		form.save()
-		messages.success(self.request, 'Gracias por contribuir.')
+		messages.success(self.request, 'Nos encanta tu comentario!!!! <3.')
 		return super().form_valid(form)
 
 class BlogView(generic.ListView):

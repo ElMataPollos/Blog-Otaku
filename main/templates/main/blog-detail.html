@@ -48,6 +48,7 @@ Start Content
             <h4 class="smTitle pb-3">{{object.author|title}}</h4> <!--Autor-->
           </div>
         </div>
+        
         <div class="col-md">
           <h4 class="smTitle pb-3">{{object.timestamp.date}}</h4> <!--Fecha en la que se creó el blog-->
         </div>
@@ -57,8 +58,18 @@ Start Content
 </section>
 
 <section>
+  <!-- <div class="col-md-6 pColMain">
+  <div class="row">
+
+      <img src="{{object.image.url}}" alt="..." class="pImg" align="center">
+
+  </div>
+  </div> -->
+
   <div class="sectionSpaceSm">
     <div class="container">
+      <!-- <img src="{{object.image.url}}" alt="..." class="pImg" align="center">
+      <br><br> -->
       {{object.body|safe}} <!--Cuerpo del blog-->
     </div>
   </div>
